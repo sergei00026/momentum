@@ -1,3 +1,5 @@
-import { name } from "./date.js";
-// dateTime();
-console.log(name);
+import { showTime, showDate } from "./dateTime.mjs";
+import { getTimeOfDay } from "./greeting.mjs";
+showTime();
+showDate();
+getTimeOfDay();

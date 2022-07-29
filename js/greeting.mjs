@@ -6,16 +6,13 @@ function getTimeOfDay() {
 	const date = new Date();
 	const hours = date.getHours();
 	const timeOfDay = ['morning', 'day', 'evening', 'night'];
-	if (hours >= 4 && hours <= 11) {
-		greetingText.textContent = `Good ${timeOfDay[0]}`;
-	} else if (hours >= 12 && hours <= 16) {
-		greetingText.textContent = `Good ${timeOfDay[1]}`;
-	} else if (hours >= 17 && hours <= 23) {
-		greetingText.textContent = `Good ${timeOfDay[2]}`;
-	} else if (hours >= 0 && hours <= 3) {
-		greetingText.textContent = `Good ${timeOfDay[3]}`;
-	}
+	if (hours >= 4 && hours <= 11) return timeOfDay[0];
+	else if (hours >= 12 && hours <= 16) return timeOfDay[1]
+	else if (hours >= 17 && hours <= 23) return timeOfDay[2]
+	else if (hours >= 0 && hours <= 3) return timeOfDay[3]
+
 }
+const timeOfDay = getTimeOfDay();
+greetingText.textContent = `Good ${timeOfDay}`;
 
-
-export { getTimeOfDay };
+export { getTimeOfDay, timeOfDay };

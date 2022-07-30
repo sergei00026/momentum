@@ -5,11 +5,11 @@ const greetingText = document.querySelector('.greeting');
 function getTimeOfDay() {
 	const date = new Date();
 	const hours = date.getHours();
-	const timeOfDay = ['morning', 'day', 'evening', 'night'];
+	const timeOfDay = ['morning', 'afternoon', 'evening', 'night'];
 	if (hours >= 4 && hours <= 11) return timeOfDay[0];
-	else if (hours >= 12 && hours <= 16) return timeOfDay[1]
-	else if (hours >= 17 && hours <= 23) return timeOfDay[2]
-	else if (hours >= 0 && hours <= 3) return timeOfDay[3]
+	else if (hours >= 12 && hours <= 16) return timeOfDay[1];
+	else if (hours >= 17 && hours <= 23) return timeOfDay[2];
+	else if (hours >= 0 && hours <= 3) return timeOfDay[3];
 
 }
 const timeOfDay = getTimeOfDay();

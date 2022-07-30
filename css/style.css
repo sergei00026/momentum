@@ -82,13 +82,25 @@ body {
 	outline: 0;
 	opacity: 0.8;
 	cursor: pointer;
-	transition: 0.3s;
+	transition: 1.3s;
+	transform: rotate(0deg);
 }
 
 .player-icon:hover,
 .slider-icon:hover,
 .change-quote:hover {
 	opacity: 1;
+}
+.change-quote:hover {
+	animation: rotate 2.3s ease-in-out;
+}
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(180deg);
+	}
 }
 
 .player-icon:active,

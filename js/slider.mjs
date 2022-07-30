@@ -2,7 +2,6 @@ import { timeOfDay } from "./greeting.mjs";
 
 const body = document.body || document.getElementsByTagName('body')[0];
 
-
 function getRandomNum(min = 1, max = 20) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
@@ -11,7 +10,7 @@ function getRandomNum(min = 1, max = 20) {
 let randomNum = getRandomNum();
 
 const SlideNext = document.querySelector('.slide-next');
-SlideNext.addEventListener("click", function getSlideNext() {
+SlideNext.addEventListener("click", function getSlideNext(e) {
 
 	if (randomNum >= 1 && randomNum < 20) {
 		randomNum = String(Number(randomNum) + 1);
@@ -45,14 +44,13 @@ function setBg() {
 	img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg`;
 
 	/*когда фоновое изображение ещё не загрузилось, но уже используется как фоновое, необходимо указывать его фоном страницы только после полной загрузки.Для этого через js создаём изображение, указываем его адрес, дожидаемся загрузки изображения для чего используем событие load и только потом указываем ссылку на изображение в качестве фона страницы.*/
-	img.addEventListener('load', function () {
-		body.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg)`
+	img.addEventListener('load', function (e) {
+		body.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${timeOfDay}/${bgNum}.jpg)`;
+		e.preventDefault();
 	})
 
 }
 setBg()
 
 
-
-
-export { setBg };
+export { setBg, getRandomNum };

@@ -7,7 +7,6 @@ const author = document.querySelector('.author');
 let n = 0;
 
 let randomNum = getRandomNum(0, 5);
-console.log(randomNum);
 
 async function getQuotes() {
 	const quotes = './json/data.json';

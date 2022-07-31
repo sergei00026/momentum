@@ -64,6 +64,9 @@ body {
 	top: 2px;
 	font-weight: 900;
 }
+.play-item.liColor::before {
+	color: #c5b358;
+}
 
 .item-active::before {
 	color: #c5b358;

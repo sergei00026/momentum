@@ -35,6 +35,7 @@ playMusic.addEventListener("click", function (e) {
 });
 
 
+
 playNext.addEventListener("click", function playNext(e) {
 
 	if (playNum + 1 < playList.length) {

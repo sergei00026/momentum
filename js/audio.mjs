@@ -86,4 +86,16 @@ function colorLi() {
 }
 
 console.log(liList);
+
+const progressBarIn = document.querySelector('.progress-barIn');
+
+function updateProgress(e) {
+	console.log(e.srcElement);
+	const { duration, curentTime } = e.srcElement;
+	console.log(duration);
+	console.log(curentTime);
+}
+
+audio.addEventListener('timeupdate', updateProgress)
+
 export { playAudio };

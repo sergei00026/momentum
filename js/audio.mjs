@@ -23,18 +23,19 @@ function playAudio() {
 	}
 }
 
+// pauseAudio
 function pauseAudio() {
 	audio.pause();
 	isPlay = false;
 	playMusic.classList.remove('pause');
-
 }
 
 playMusic.addEventListener("click", function (e) {
 	playAudio()
 });
 
-playNext.addEventListener("click", function playNext(e) {
+// nextSong
+function nextSong(e) {
 
 	if (playNum + 1 < playList.length) {
 		playNum++;
@@ -45,8 +46,11 @@ playNext.addEventListener("click", function playNext(e) {
 	colorLi()
 	isPlay = false;
 	playAudio()
-});
+};
 
+playNext.addEventListener("click", nextSong);
+
+// playPrev
 playPrev.addEventListener("click", function playPrev(e) {
 
 	if (playNum === 0) {
@@ -85,17 +89,63 @@ function colorLi() {
 	});
 }
 
-console.log(liList);
 
+// ПрогрессБар
 const progressBarIn = document.querySelector('.progress-barIn');
 
 function updateProgress(e) {
-	console.log(e.srcElement);
-	const { duration, curentTime } = e.srcElement;
-	console.log(duration);
-	console.log(curentTime);
+	// Через деструктаризацию получиили  длительность и текущую секунду
+	const { duration, currentTime } = e.srcElement;
+	const progressBarPercent = (currentTime / duration) * 100;
+	progressBarIn.style.width = `${progressBarPercent}%`;
 }
 
 audio.addEventListener('timeupdate', updateProgress)
+
+// set progress
+const progressBarContainer = document.querySelector('.progress-bar');
+
+function setProgress(e) {
+	// получил длину контейнера
+	const width = this.clientWidth
+	// получил текущее место в контейнере
+	const clickX = e.offsetX;
+	// получил длину тек. песни
+	const duration = audio.duration;
+
+	audio.currentTime = (clickX / width) * duration;
+}
+
+progressBarContainer.addEventListener("click", setProgress);
+
+//Autoplay
+audio.addEventListener('ended', nextSong)
+
+//
+const durationAudio = document.querySelector('.duration');
+
+function setTimeAudio(e) {
+
+	// получил длину тек. песни
+	const duration = audio.duration;
+	const currentTime = audio.currentTime;
+
+	// Minutes
+	let minutes = Math.floor(currentTime / 60);
+	if (minutes < 10) {
+		minutes = '0' + String(minutes);
+	}
+
+	// Seconds
+	let seconds = Math.floor(currentTime % 60);
+
+	if (seconds < 10) {
+		seconds = '0' + String(seconds);
+	}
+
+	durationAudio.innerHTML = `${minutes}:${seconds}`;
+
+}
+audio.addEventListener('timeupdate', setTimeAudio)
 
 export { playAudio };

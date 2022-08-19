@@ -2,6 +2,7 @@ const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');
 const weatherDescription = document.querySelector('.weather-description');
 const windSpeed = document.querySelector('.wind');
+const humidity = document.querySelector('.humidity');
 
 let city = document.querySelector('.city');
 if (city.value == undefined || city.value == '') {
@@ -25,7 +26,8 @@ async function getWeather() {
 	weatherIcon.classList.add(`owf-${data.weather[0].id}`);
 	temperature.textContent = `${Math.round(data.main.temp)}°C`;
 	weatherDescription.textContent = data.weather[0].description;
-	// windSpeed.textContent = data.wind.speed;
+	windSpeed.innerHTML = 'Wind speed:' + Math.round(data.wind.speed) + '&nbsp; &nbsp;m/s';
+	humidity.textContent = 'Humidity: ' + data.main.humidity + '%';
 
 }
 getWeather()

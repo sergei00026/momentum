@@ -16,19 +16,14 @@ function playAudio() {
 		isPlay = true;
 		playMusic.classList.add('pause');
 		colorLi()
-
 	} else {
-
-		pauseAudio()
+		audio.pause();
+		isPlay = false;
+		playMusic.classList.remove('pause');
 	}
 }
 
-// pauseAudio
-function pauseAudio() {
-	audio.pause();
-	isPlay = false;
-	playMusic.classList.remove('pause');
-}
+
 
 playMusic.addEventListener("click", function (e) {
 	playAudio()
@@ -36,13 +31,11 @@ playMusic.addEventListener("click", function (e) {
 
 // nextSong
 function nextSong(e) {
-
 	if (playNum + 1 < playList.length) {
 		playNum++;
 	} else {
 		playNum = 0;
 	}
-
 	colorLi()
 	isPlay = false;
 	playAudio()
@@ -55,11 +48,7 @@ playPrev.addEventListener("click", function playPrev(e) {
 
 	if (playNum === 0) {
 		playNum = playList.length - 1;
-	}
-	else {
-		playNum -= 1;
-	}
-
+	} else { playNum -= 1; }
 	colorLi()
 	console.log(playNum);
 	isPlay = false;
@@ -84,11 +73,9 @@ function colorLi() {
 			element.classList.add('liColor');
 		} else {
 			element.classList.remove('liColor');
-
 		}
 	});
 }
-
 
 // ПрогрессБар
 const progressBarIn = document.querySelector('.progress-barIn');
@@ -146,6 +133,15 @@ function setTimeAudio(e) {
 	durationAudio.innerHTML = `${minutes}:${seconds}`;
 
 }
-audio.addEventListener('timeupdate', setTimeAudio)
+audio.addEventListener('timeupdate', setTimeAudio);
+
+// volume
+const volum = document.querySelector('.volum');
+
+function volumeAudio() {
+	audio.volume = volum.value;
+}
+
+audio.addEventListener('timeupdate', volumeAudio);
 
 export { playAudio };
